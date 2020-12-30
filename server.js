@@ -10,6 +10,18 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+const koko = {
+  firstName: "yuval",
+  lastName: "azarya",
+  email: "yuval@gmail.com",
+};
+
+app.get("/koko", (req, res) => {
+  if (koko) {
+    res.send(koko);
+  }
+});
+
 app.listen(PORT, () =>
   console.log(`Listen on port: ${PORT}.. Click me -> http://localhost/${PORT}`)
 );
