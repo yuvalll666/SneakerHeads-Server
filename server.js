@@ -9,7 +9,7 @@ const { localUrl } = require("./config");
 const path = require("path");
 
 const PORT = process.env.PORT || 3900;
-const { Product } = require("./models/product");
+// const { Product } = require("./models/product");
 
 // Connect to atlas mongoDB
 mongoose
