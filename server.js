@@ -31,9 +31,9 @@ app.use(cors());
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
-app.use("/api/users", require("./routes/users"));
-app.use("/api/admin", require("./routes/admin"));
-app.use("/api/products", require("./routes/products"));
+// app.use("/api/users", require("./routes/users"));
+// app.use("/api/admin", require("./routes/admin"));
+// app.use("/api/products", require("./routes/products"));
 
 // Updates user to confiremed user
 app.get("/confirmation/:token", async (req, res) => {
