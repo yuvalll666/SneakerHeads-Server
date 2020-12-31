@@ -3,13 +3,12 @@ const app = express();
 const http = require("http").Server(app);
 const mongoose = require("mongoose");
 const cors = require("cors");
-// const { User } = require("./models/user");
+const { User } = require("./models/user");
 const jwt = require("jsonwebtoken");
 const { localUrl } = require("./config");
 const path = require("path");
-
 const PORT = process.env.PORT || 3900;
-// const { Product } = require("./models/product");
+const { Product } = require("./models/product");
 
 // Connect to atlas mongoDB
 mongoose
