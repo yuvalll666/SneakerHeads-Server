@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 
 // app.use("/api/users", require("./routes/users"));
 // app.use("/api/admin", require("./routes/admin"));
-// app.use("/api/products", require("./routes/products"));
+app.use("/api/products", require("./routes/products"));
 
 // Updates user to confiremed user
 app.get("/confirmation/:token", async (req, res) => {
