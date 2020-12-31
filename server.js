@@ -31,8 +31,9 @@ const koko = {
 };
 
 app.get("/products", (req, res) => {
-  Product.find({ brand: 1 }).exec((products) => {
-    console.log(products);
+  console.log("in the shit");
+  Product.find({}).exec((err, products) => {
+    res.send(products);
   });
 });
 
