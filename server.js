@@ -31,13 +31,6 @@ app.use(cors());
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
-app.get("/products", (req, res) => {
-  console.log("in the shit");
-  Product.find({}).exec((err, products) => {
-    res.send(products);
-  });
-});
-
 app.use("/api/users", require("./routes/users"));
 app.use("/api/admin", require("./routes/admin"));
 app.use("/api/products", require("./routes/products"));
