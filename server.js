@@ -24,6 +24,8 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+console.log(process.env.KOKO);
+
 const koko = {
   firstName: "yuval",
   lastName: "azarya",
