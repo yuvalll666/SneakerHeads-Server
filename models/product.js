@@ -1,3 +1,4 @@
+const Joi = require("@hapi/joi");
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
@@ -52,4 +53,25 @@ const productSchema = new Schema(
 // Create mongoose Product model with schema
 const Product = mongoose.model("Product", productSchema);
 
+/**
+ * Validate an Object structure
+ * @param {Object} product - Product information
+ * @returns {Object} - Containes validation details
+ */
+function validateProduct(product) {
+  const schema = Joi.object({
+    title: Joi.string().required().min(2).max(255),
+    description: Joi.string().required().min(2).max(1024),
+    price: Joi.number().required(),
+    writer: Joi.string(),
+    brand: Joi.number(),
+    images: Joi.array().required(),
+    tags: Joi.array(),
+    views: Joi.number(),
+  });
+
+  return schema.validate(product, { abortEarly: false });
+}
+
 exports.Product = Product;
+exports.validateProduct = validateProduct;
