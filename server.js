@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3900;
+const Product = require("./models/product");
 
 mongoose
   .connect(
@@ -29,7 +30,11 @@ const koko = {
   email: "yuval@gmail.com",
 };
 
-console.log(koko);
+app.get("/products", (req, res) => {
+  Product.find({ brand: 1 }).exec((products) => {
+    res.send(products);
+  });
+});
 
 app.get("/koko", (req, res) => {
   if (koko) {
