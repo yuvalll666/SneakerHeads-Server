@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const mongoose = require("mongoose");
 const PORT = process.env.PORT || 3900;
-const Product = require("./models/product");
+const { Product } = require("./models/product");
 
 mongoose
   .connect(
@@ -32,7 +32,7 @@ const koko = {
 
 app.get("/products", (req, res) => {
   Product.find({ brand: 1 }).exec((products) => {
-    res.send(products);
+    console.log(products);
   });
 });
 
