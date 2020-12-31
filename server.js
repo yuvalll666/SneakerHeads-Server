@@ -21,10 +21,8 @@ app.use(require("morgan")("dev"));
 app.use(express.json());
 
 app.get("/", (req, res) => {
-  res.send("Hello World");
+  res.send(process.env.KOKO);
 });
-
-console.log(process.env.KOKO);
 
 const koko = {
   firstName: "yuval",
