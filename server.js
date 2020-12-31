@@ -6,7 +6,7 @@ const { Product } = require("./models/product");
 
 mongoose
   .connect(
-    `mongodb+srv://yuval:315569533@onlineshop.abqhu.mongodb.net/online-shop?retryWrites=true&w=majority`,
+    `mongodb+srv://yuval:${process.env.MONGO_PASSWORD}@onlineshop.abqhu.mongodb.net/online-shop?retryWrites=true&w=majority`,
     {
       useNewUrlParser: true,
       useUnifiedTopology: true,
@@ -24,6 +24,7 @@ app.get("/", (req, res) => {
   res.send(process.env.KOKO);
 });
 
+console.log(process.env.KOKO);
 const koko = {
   firstName: "yuval",
   lastName: "azarya",
