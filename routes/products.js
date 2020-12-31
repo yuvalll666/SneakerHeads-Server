@@ -1,7 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
-const authEditorAuth = require("../middleware/adminEditorAuth")
+const adminEditorAuth = require("../middleware/adminEditorAuth");
 const path = require("path");
 const { Product, validateProduct } = require("../models/product");
 
@@ -123,7 +123,7 @@ router.post("/getProducts", async (req, res) => {
  * @returns {Object} data - Product {Object}
  * @see validateProduct
  */
-router.post("/uploadProduct", authEditorAuth, async (req, res) => {
+router.post("/uploadProduct", adminEditorAuth, async (req, res) => {
   const { error } = validateProduct(req.body);
   //If product from client don't match schema, bail
   if (error) {
@@ -142,45 +142,44 @@ router.post("/uploadProduct", authEditorAuth, async (req, res) => {
   res.send(product);
 });
 
-// Create multer storage Object
-const storage = multer.diskStorage({
-  destination: "../public/uploads/",
-  filename: (req, file, cb) => {
-    cb(null, `${Date.now()}_${file.originalname}`);
-  },
-});
+// // Create multer storage Object
+// const storage = multer.diskStorage({
+//   destination: "../public/uploads/",
+//   filename: (req, file, cb) => {
+//     cb(null, `${Date.now()}_${file.originalname}`);
+//   },
+// });
 
-// Upload image file
-const upload = multer({
-  storage: storage,
-  fileFilter: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    // If not an image file bail
-    if (ext !== ".jpg" && ext !== ".png" && ext !== ".jpeg") {
-      return cb("Error: only jpg, png and jpeg are allowed", false);
-    } else {
-      cb(null, true);
-    }
-  },
-}).single("file");
+// // Upload image file
+// const upload = multer({
+//   storage: storage,
+//   fileFilter: (req, file, cb) => {
+//     const ext = path.extname(file.originalname);
+//     // If not an image file bail
+//     if (ext !== ".jpg" && ext !== ".png" && ext !== ".jpeg") {
+//       return cb("Error: only jpg, png and jpeg are allowed", false);
+//     } else {
+//       cb(null, true);
+//     }
+//   },
+// }).single("file");
 
-
-/**
- * Upload image file 
- * ADMIN / EDITOR authentication
- * @returns {Object} data - Image path, file name
- */
-router.post("/uploadImage", authEditorAuth, (req, res) => {
-  upload(req, res, (error) => {
-    if (error) {
-      return res.status(400).send({ success: false, error });
-    }
-    return res.send({
-      success: true,
-      image: res.req.file.path.slice(10),
-      fileName: res.req.file.filename,
-    });
-  });
-});
+// /**
+//  * Upload image file
+//  * ADMIN / EDITOR authentication
+//  * @returns {Object} data - Image path, file name
+//  */
+// router.post("/uploadImage", adminEditorAuth, (req, res) => {
+//   upload(req, res, (error) => {
+//     if (error) {
+//       return res.status(400).send({ success: false, error });
+//     }
+//     return res.send({
+//       success: true,
+//       image: res.req.file.path.slice(10),
+//       fileName: res.req.file.filename,
+//     });
+//   });
+// });
 
 module.exports = router;
