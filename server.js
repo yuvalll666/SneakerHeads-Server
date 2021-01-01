@@ -34,6 +34,15 @@ app.get("/", (req, res) => {
   res.send("Working..");
 });
 
+app.get("/koko", (req, res) => {
+  Product.find({ brand: 1 }).exec((err, products) => {
+    if (err) {
+      res.status(400).send("errorrrrrrrrrr");
+    }
+    res.send(products);
+  });
+});
+
 app.use("/api/users", require("./routes/users"));
 app.use("/api/admin", require("./routes/admin"));
 app.use("/api/products", require("./routes/products"));
