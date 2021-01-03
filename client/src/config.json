@@ -1,0 +1,10 @@
+{
+  "apiUrl": "https://sneakerheadsfreshstart.herokuapp.com/api",
+  "localUrl": "http://localhost:3000",
+  "userRole": {
+    "NORMAL": 0,
+    "EDITOR": 1,
+    "ADMIN": 2
+  },
+  "tokenKey": "token"
+}

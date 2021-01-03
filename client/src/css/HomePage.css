@@ -1,0 +1,60 @@
+.home-page-header {
+  width: 100%;
+  height: 450px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+}
+
+@media all and (min-width: 1500px) {
+  .home-page-header {
+    height: 550px;
+  }
+}
+
+@media all and (min-width: 1800px) {
+  .home-page-header {
+    height: 700px;
+  }
+}
+
+.see-all {
+  font-size: 1em;
+  font-family: "Gill Sans", "Gill Sans MT", Calibri, "Trebuchet MS", sans-serif;
+}
+
+.card-title {
+  font-size: 0.95em;
+  font-family: sans-serif;
+  font-weight: 500;
+  height: 35px;
+}
+
+.row-title {
+  font-size: 1.3em;
+}
+
+.brands {
+  width: 260px;
+}
+.brands-container {
+  position: relative;
+  width: 260px;
+  margin-right: 10px;
+}
+.side-image {
+  width: 30px;
+}
+.side-image-container {
+  background-color: white;
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 50px;
+  height: 50px;
+  background-repeat: no-repeat;
+  background-position: 50% 60%;
+  background-size: 70%;
+}
+
+

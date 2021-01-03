@@ -1,0 +1,80 @@
+.page-header {
+  background: rgb(71, 71, 71);
+  background: linear-gradient(
+    186deg,
+    rgba(71, 71, 71, 1) 0%,
+    rgba(28, 28, 28, 1) 70%
+  );
+  width: 100%;
+  height: 350px;
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 93%);
+}
+
+.text-container p {
+  color: whitesmoke;
+  font-weight: 500;
+  font-size: 1.1em;
+}
+
+.text-container h2 {
+  color: whitesmoke;
+  padding-top: 30px;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+  font-size: 2.5em;
+}
+
+.page-header-image {
+  /* transform: rotateZ(8deg); */
+  padding-top: 50px;
+}
+
+.main-para {
+  font-size: 1.3em;
+}
+
+.sec-section {
+  background: rgb(218, 218, 218);
+  background: linear-gradient(
+    90deg,
+    rgba(218, 218, 218, 1) 0%,
+    rgba(244, 244, 244, 1) 31%,
+    rgba(16, 142, 207, 1) 61%
+  );
+  /* background: rgb(212,212,212);
+  background: linear-gradient(90deg, rgba(212,212,212,1) 0%, rgba(240,240,240,1) 39%, rgba(131,246,239,1) 100%); */
+  width: 100%;
+  height: 370px;
+}
+
+.sec-section-row {
+  height: 370px;
+}
+
+.visit-us-title {
+  color: whitesmoke;
+  font-size: 3.5em;
+  font-family: Impact, Haettenschweiler, "Arial Narrow Bold", sans-serif;
+}
+.visit-us-para {
+  font-size: 1.5em;
+  color: whitesmoke;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+
+.shop-image {
+  animation: slide 1000ms ease-in-out;
+}
+
+@keyframes slide {
+  0% {
+    transform: translateY(+100px);
+    opacity: 0;
+  }
+  50% {
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
