@@ -30,9 +30,9 @@ app.use(cors());
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
-app.get("/", (req, res) => {
-  res.send("Working..");
-});
+// app.get("/", (req, res) => {
+//   res.send("Working..");
+// });
 
 app.get("/koko", (req, res) => {
   Product.find({ brand: 1 }).exec((err, products) => {
