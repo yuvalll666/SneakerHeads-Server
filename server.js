@@ -10,6 +10,8 @@ const path = require("path");
 const PORT = process.env.PORT || 3900;
 const { Product } = require("./models/product");
 
+// "heroku-postbuild": "npm run client:install && npm run run client:build"
+
 // Connect to atlas mongoDB
 mongoose
   .connect(
