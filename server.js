@@ -32,19 +32,6 @@ app.use(cors());
 app.use(require("morgan")("dev"));
 app.use(express.json());
 
-// app.get("/", (req, res) => {
-//   res.send("Working..");
-// });
-
-app.get("/koko", (req, res) => {
-  Product.find({ brand: 1 }).exec((err, products) => {
-    if (err) {
-      res.status(400).send("errorrrrrrrrrr");
-    }
-    res.send(products);
-  });
-});
-
 app.use("/api/users", require("./routes/users"));
 app.use("/api/admin", require("./routes/admin"));
 app.use("/api/products", require("./routes/products"));
@@ -90,6 +77,6 @@ app.get("*", (req, res) => {
 // Listen on port 3900
 app.listen(PORT, () =>
   console.log(
-    `Listening on port: ${PORT}.. Click me -> http://localhost/${PORT}`
+    `Listening on port: ${PORT}.. Click me -> http://localhost:${PORT}`
   )
 );

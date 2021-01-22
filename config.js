@@ -1,4 +1,4 @@
-const localUrl = "http://localhost:3000";
+const localUrl = "";
 const apiUrl = "https://sneakerheadsfreshstart.herokuapp.com/";
 
 module.exports = {

@@ -3,7 +3,9 @@ const router = express.Router();
 const multer = require("multer");
 const adminEditorAuth = require("../middleware/adminEditorAuth");
 const path = require("path");
+const fs = require("fs");
 const { Product, validateProduct } = require("../models/product");
+const firebase = require("firebase");
 
 /**
  * Get most viewed products
@@ -142,44 +144,22 @@ router.post("/uploadProduct", adminEditorAuth, async (req, res) => {
   res.send(product);
 });
 
-// // Create multer storage Object
-// const storage = multer.diskStorage({
-//   destination: "../public/uploads/",
-//   filename: (req, file, cb) => {
-//     cb(null, `${Date.now()}_${file.originalname}`);
-//   },
-// });
-
-// // Upload image file
-// const upload = multer({
-//   storage: storage,
-//   fileFilter: (req, file, cb) => {
-//     const ext = path.extname(file.originalname);
-//     // If not an image file bail
-//     if (ext !== ".jpg" && ext !== ".png" && ext !== ".jpeg") {
-//       return cb("Error: only jpg, png and jpeg are allowed", false);
-//     } else {
-//       cb(null, true);
-//     }
-//   },
-// }).single("file");
-
-// /**
-//  * Upload image file
-//  * ADMIN / EDITOR authentication
-//  * @returns {Object} data - Image path, file name
-//  */
-// router.post("/uploadImage", adminEditorAuth, (req, res) => {
-//   upload(req, res, (error) => {
-//     if (error) {
-//       return res.status(400).send({ success: false, error });
-//     }
-//     return res.send({
-//       success: true,
-//       image: res.req.file.path.slice(10),
-//       fileName: res.req.file.filename,
-//     });
-//   });
-// });
+router.post("/oldImagesDelete", adminEditorAuth, async (req, res) => {
+  const url = req.body.image;
+  const prodId = req.body.oldProductId;
+  const doc = await Product.findById({ _id: prodId });
+  doc.images.forEach((item) => {
+    if (item == url) {
+      doc.update({ $pull: { images: url } }).exec((err, deleted) => {
+        if (err) {
+          return res.status(403).send(err);
+        } else {
+          console.log(deleted);
+          return res.status(200).send(deleted);
+        }
+      });
+    }
+  });
+});
 
 module.exports = router;
