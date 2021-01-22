@@ -17,7 +17,6 @@ const mongoose = require("mongoose");
 const { ObjectId } = mongoose.Types;
 const jwt = require("jsonwebtoken");
 const { apiUrl } = require("../config");
-
 /**
  * Get user's history information
  * @returns {Object} data - Jhistory {Array.<Object>}
@@ -328,8 +327,25 @@ router.post("/signup", async (req, res) => {
     expiresIn: "1d",
   });
 
-  const url = `${apiUrl}/confirmation/${emailToken}`;
+  const url = `https://sneaker-heads.netlify.app/confirmation/${emailToken}`;
   sendIt(user, url);
+});
+
+router.post("/verify", async (req, res) => {
+  const userToken = req.body.params;
+
+  const decoded = jwt.verify(userToken, process.env.EMAIL_SECRET);
+  console.log("koko");
+  if (decoded) {
+    console.log("decod : : ",decoded);
+    const user = await User.findOneAndUpdate(
+      { _id: decoded._id },
+      { confirmed: true }
+    );
+    res.send(user);
+  } else {
+    res.status(403).send("User not verified");
+  }
 });
 
 module.exports = router;
